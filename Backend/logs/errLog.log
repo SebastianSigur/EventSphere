@@ -1,0 +1,6 @@
+20230814	18:50:16	27953e72-89e3-438e-b952-518ce7c368c4	RangeError: Invalid status code: 10	POST	/users	undefined
+20230814	18:55:51	1a26c3da-42ed-44db-8827-c2c1e3f2742b	RangeError: Invalid status code: 10	POST	/users	undefined
+20230814	18:57:51	4f5cbe98-7077-4998-8386-22fc68b13932	RangeError: Invalid status code: 10	POST	/users	undefined
+20230814	18:58:10	67875bf6-6f84-4e3f-9f75-f7da6997c146	RangeError: Invalid status code: 10	POST	/users	undefined
+20230814	19:04:39	25e21c89-4985-4bbe-b35a-0c2510b1181d	PayloadTooLargeError: request entity too large	POST	/users	undefined
+20230814	19:15:47	97fcded4-0a59-4a35-bd18-c2f1368be5df	TypeError: Event.create is not a function	POST	/events	undefined

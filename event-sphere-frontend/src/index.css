@@ -1,13 +1,288 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+
+.component__layout__navbar {
+display: flex;
+flex-direction: column;
+color: white;
+
+
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.component__layout__logo img {
+width: 200px;
+height: auto;
+}
+
+.component__layout__nav-buttons {
+display: flex;
+flex-direction: column;
+
+margin-top: 20px;
+}
+
+.component__layout__nav-buttons button {
+display: flex;
+align-items: center;
+background: none;
+border: none;
+color: rgb(10, 1, 1);
+cursor: pointer;
+margin: 10px 0;
+}
+
+.component__layout__content {
+flex: 1;
+padding: 20px;
+}
+
+.home-page {
+
+  display: flex;
+  justify-content: center; /* Center the columns horizontally */
+  padding-top: 50px;
+  height: 100vh;
+}
+.columns-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center columns horizontally */
+  width: 100%; /* Adjust the width as needed */
+
+}
+
+.left-column {
+  
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center the columns horizontally */
+  align-items: center; /* Center the columns vertically */
+  width: 300px;
+  flex-shrink: 0; /* Prevent shrinking */
+  border-right: 1px solid #ccc; /* Add the grey line */
+  
+  margin-left: auto; /* Remove margin */
+  height: 100%;
+
+}
+.main-column {
+  overflow-y: auto; /* Add this line for vertical scrolling */
+
+ 
+  width: 700px;
+  flex-shrink: 0; /* Prevent shrinking */
+  height: 100%;
+  border-right: 1px solid #ccc; /* Add the grey line */
+  flex-direction: column;
+  align-items: center;
+}
+.right-column {
+  display: flex;
+  height: 100%;
+  width: 500px;
+  flex-shrink: 0; /* Prevent shrinking */
+  
+  
+  flex-direction: column;
+
+  }
+.event-list {
+flex-direction: row;
+margin: 0 auto;
+overflow-y: auto; /* Add this line for vertical scrolling */
+max-height: calc(100vh - 40px); /* Adjust based on your layout */
+
+}
+.public-events {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  align-items: center;
+}
+
+.search-filters {
+  margin-left: 50px;
+display: flex;
+flex-direction: column;
+height: 100%;
+width: 30%;
+padding: 10px;
+}
+.toggle-container {
+display: flex;
+align-items: center;
+gap: 10px;
+margin-bottom: 30px;
+background-color: #cdc5c5;
+border-radius: 50px;
+padding: 10px;
+
+
+
+}
+
+
+
+
+.toggle-button,
+.filter-button {
+padding: 8px 16px;
+border: none;
+background-color: transparent;
+color: #2a2929;
+cursor: pointer;
+font-weight: bold;
+border-radius: 20px;
+}
+
+.toggle-button.active,
+.filter-button.active {
+background-color: #474343;
+color: white;
+}
+
+
+.search-container {
+display: flex;
+align-items: center;
+border: 1px solid #ccc;
+border-radius: 5px;
+padding: 5px;
+}
+
+.search-container input {
+border: none;
+outline: none;
+margin-left: 5px;
+}
+
+.filter-container {
+  margin-top: 100px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  }
+
+.event {
+  display: flex;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f2f0f09a;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  margin-bottom: 10px ;
+}
+
+.event img {
+  height: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.event h3 {
+  margin-top: 0;
+
+}
+
+.invited-list {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
+.invited-img-container {
+    width: 30px;
+    height: 30px; /* Set the same value as width for a perfect circle */
+    border-radius: 50%; /* Use 50% for a circle */
+    border: 2px solid #ccc; /* Add a border */
+    overflow: hidden; /* Hide any overflow content */
+}
+.event-mini-img-container{
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  max-width: 100%;
+  max-height: 1000px;
+  justify-content: center;
+  align-items: center;
+}
+
+.eventmini-user{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+  
+  
+}
+.owner-event-mini-container{
+  display: flex;
+    width:50px;
+    height: 50px; /* Set the same value as width for a perfect circle */
+    border-radius: 50%; /* Use 50% for a circle */
+    overflow: hidden; /* Hide any overflow content */
+   
+}
+
+.eventmini-user a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.eventmini-user p{
+  margin-left: 10px;
+}
+
+.event-image-comment-container {
+  display: flex;
+}
+.event-image-comments-wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+.event-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover; /* To ensure the image maintains its aspect ratio */
+}
+
+.commentsMiniContainer{
+  flex: 1;
+  padding-left: 10px; /* Add spacing between image and comments */
+  overflow-y: auto; /* Add scrollbar if comments overflow vertically */
+}
+.commentsMiniContainer-main{
+  display: flex;
+  flex-direction: column;
+}
+.commentMini {
+  display: flex;
+  flex-direction: column;
+
+  padding: 10px; /* Add some spacing */
+}
+
+.commentOwner {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px; /* Add some spacing between owner and content */
+}
+
+.commentOwner img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px; /* Add spacing between image and text */
+}
+
+.commentOwner p {
+  margin: 0; /* Reset default margin */
+  font-weight: bold;
+
 }

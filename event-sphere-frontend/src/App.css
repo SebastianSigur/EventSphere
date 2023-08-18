@@ -1,3 +1,21 @@
+
+:root {
+  /* COLORS */
+  --BGCOLOR: #0F172A;
+  --BORDER-COLOR: #FFF;
+  --COLOR: #FFF;
+  --ERROR: firebrick;
+  --INACTIVE: lightgray;
+  --LINK-COLOR: whitesmoke;
+  --LINK-HOVER: rgba(245, 245, 245, 0.9);
+  --NOTE-BGCOLOR: hsla(240, 64%, 27%, 0.65);
+  --STATUS-COMPLETE: limegreen;
+  --STATUS-OPEN: firebrick;
+  --TABLE-BGCOLOR: #FFF;
+  --TABLE-COLOR: #000;
+  --INPUT-INVALID: #F00;
+}
+
 .component__layout__container {
   display: flex;
   flex-direction: column;
@@ -37,3 +55,22 @@
   flex: 1;
   padding: 20px;
 }
+
+.errmsg {
+  display: inline-block;
+  background-color: var(--TABLE-BGCOLOR);
+  color: var(--ERROR);
+  padding: 0.25em;
+  margin-bottom: 0.5em;
+}
+
+.errmsg a:any-link {
+  color: var(--ERROR);
+  text-decoration: underline;
+}
+
+.form__input--incomplete {
+  border: 1px solid var(--INPUT-INVALID);
+  outline: 1px solid var(--INPUT-INVALID);
+}
+

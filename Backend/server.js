@@ -6,21 +6,30 @@ const errorHandler = require('./middleware/errorHandler');
 const app = express();
 const path = require('path')
 const { logger, logEvents } = require('./middleware/logger')
+const cors = require('cors')
+const corsOptions = require('./config/corsOptions')
 const connectDB = require('./config/dbCon')
 const mongoose = require('mongoose')
+const cookieParser = require('cookie-parser')
 const PORT = process.env.PORT || 3100;
 
 console.log(process.env.NODE_ENV)
 
 connectDB()
-
+app.use(express.json({limit: '10mb'}));
 app.use(logger)
+
+app.use(cors(corsOptions))
 
 app.use(express.json())
 
 app.use('/', express.static(path.join(__dirname, 'public')))
 
+app.use(cookieParser())
+
+
 app.use('/', require('./routes/root'))
+app.use('/auth', require('./routes/authRoutes'))
 app.use('/users', require('./routes/userRoutes'))
 app.use('/events', require('./routes/eventRoutes'))
 app.use('/comments', require('./routes/commentRoutes'))

@@ -1,54 +1,68 @@
 import React, { useState } from "react";
 import CommentMini from "./commentMini";
+import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import SignInPopup from "../auth/signinPopup";
+import { useAddNewCommentMutation } from "./CommentApiSlice";
+const CommentsMini = ({ comments, imageHeight, eventId }) => {
 
-const dummyComments = [
-    { owner: "Sebastian", content: "This is my dummy comment 1" },
-    { owner: "user2", content: "This is my dummy comment 2" },
-    { owner: "user3", content: "This is my dummy comment 3" },
-    { owner: "user3", content: "This is my dummy comment 4" },
-    { owner: "user3", content: "This is my dummy comment 5" },
-
-    { owner: "user3", content: "This is my dummy comment 6" },
-    { owner: "user3", content: "This is my dummy comment 7" },
-    { owner: "user3", content: "This is my dummy comment 8" },
-    { owner: "user3", content: "This is my dummy comment 9" },
-    { owner: "user3", content: "This is my dummy comment 1" },
-    { owner: "user3", content: "This is my dummy comment 2" },
-    { owner: "user3", content: "This is my dummy comment 3" },
-    { owner: "user3", content: "This is my dummy comment 4" },
-    { owner: "user3", content: "This is my dummy comment 5" },
-    { owner: "user3", content: "This is my dummy comment 6" },
-
-
-
-];
-
-const CommentsMini = ({ imageHeight }) => {
+    const { status, id } = useAuth()
+    const [showPopup, setShowPopup] = useState(false);
     const [userComment, setUserComment] = useState("");
-    const [comments, setComments] = useState(dummyComments);
+    const [eventComments, setEventComments] = useState(comments);
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const [addNewComment, {
+        isLoading: isLoadingComment,
+        isSuccess: isSuccessComment,
+        isError: isErrorComment,
+        error: errorComment
+    }] = useAddNewCommentMutation()
+
+    
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (userComment.trim() !== "") {
-            const newComment = { owner: "currentUser", content: userComment };
-            setComments([...comments, newComment]);
-            setUserComment("");
+       
+        if(status != 'guest'){
+            if (userComment.trim() !== "") {
+                const newComment = { owner: id, content: userComment, event: eventId};
+                
+                const res = await addNewComment(newComment)
+                if (!res.error) {
+                    setUserComment("");
+                }
+                else{
+                    console.log("Error: ", res.error)
+                }
+                
+
+            }
+        }
+        else{
+            setShowPopup(true)
+
         }
     };
 
     const handleCommentChange = (e) => {
         setUserComment(e.target.value);
     };
+    let postComments = (<p>No comments on this post</p>)
+    if (comments?.length > 0 && comments !== undefined){
+        postComments = (
+            comments?.map((comment, index) => (
+                <CommentMini key={index} comment={comment} />
+            ))
+        )
+    }
 
     return (
         <div className="commentsMiniContainer-main" style={{height:imageHeight}}>
-            <p>Comments</p>
+
         
             <div className="commentsMiniContainer">
                 <div className="commentsList">
-                    {comments.map((comment, index) => (
-                        <CommentMini key={index} comment={comment} />
-                    ))}
+                    {postComments}
                 </div>
                 
             </div>
@@ -61,6 +75,8 @@ const CommentsMini = ({ imageHeight }) => {
                     />
                     <button type="submit">Submit</button>
                 </form>
+                {showPopup ? <SignInPopup setShowPopup={setShowPopup} /> : null}    
+
         </div>
     );
 };

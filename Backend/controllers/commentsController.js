@@ -37,7 +37,7 @@ const createNewComment = async (req, res) => {
     }
 
     // Additional checks
-    if (!Number.isInteger(likes) || likes < 0) {
+    if ((!Number.isInteger(likes) || likes < 0) && likes !== undefined) {
         return res.status(400).json({ message: '"likes" must be a non-negative integer' });
     }
     if (typeof hasChanged !== 'boolean' && hasChanged !== undefined) {

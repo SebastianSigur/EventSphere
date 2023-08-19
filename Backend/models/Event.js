@@ -27,6 +27,18 @@ const event = new mongoose.Schema(
             type: Boolean,
             default: true,
         },
+        date:{
+            type: String,
+            required: true,
+        },
+        time:{
+            type: String,
+            required: true,
+        },
+        timezone:{
+            type: String,
+            default: 'GMT',
+        },
         img:{
             type: String,
             required: true,

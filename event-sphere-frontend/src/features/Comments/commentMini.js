@@ -1,11 +1,22 @@
 import React from "react";
+import { useGetUsersQuery } from "../users/UserApiSlice";
 
 const CommentMini = ({ comment }) => {
+    
+    const {user} = useGetUsersQuery('usersList', {
+        selectFromResult: ({data}) => {
+            return({
+                user: data?.entities[comment.owner]
+            })
+        }
+    })
+
+
     return (
         <div className="commentMini">
             <div className="commentOwner">
-                <img src="https://i.imgur.com/ouXvRND.png" alt="User Comment"/>
-                <p>{comment.owner}</p>
+                <img src={user?.img} alt="User Comment"/>
+                <p>{user?.username}</p>
             </div>
             <div className="commentContent">{comment.content}</div>
         </div>

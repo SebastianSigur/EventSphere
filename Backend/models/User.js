@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
     },
     roles: {
         type: [String],
-        default: ["Employee"]
+        default: ["user"]
     },
     active: {
         type: Boolean,
@@ -19,12 +19,24 @@ const userSchema = new mongoose.Schema({
     },
     img: {
         type: String,
-        default: "https://imgur.com/L4OnEnK"
+        default: "https://i.imgur.com/L4OnEnK.png"
     },
     about:{
         type: String,
         default: "About me ..."
-    }
+    },
+    friends:{
+        type: [mongoose.Schema.Types.ObjectId],
+        default: []
+    },
+    requests:{
+        type: [mongoose.Schema.Types.ObjectId],
+        default: []
+    },
+    likedEvents:{
+        type: [mongoose.Schema.Types.ObjectId],
+        default: []
+    },
 })
 
 module.exports = mongoose.model('User', userSchema)
